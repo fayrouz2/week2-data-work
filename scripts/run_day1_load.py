@@ -22,7 +22,6 @@ pd_orders=enforce_schema(pd_orders)
 # write Parquet outputs to data/processed/
 write_parquet(pd_orders,paths.Processed/"orders.parquet")
 
-
 #check
 order_pq=read_parquet(paths.Processed/"orders.parquet")
 print(order_pq.head())
