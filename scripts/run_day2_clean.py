@@ -22,8 +22,8 @@ pd_users=read_users_csv(paths.raw/'users.csv')
 
 
 # 2. runs basic checks (columns + non-empty)
-require_columns(pd_orders, ["order_id"]) #add cols
-require_columns(pd_users, ["user_id"]) #add cols
+require_columns(pd_orders,  ["order_id","user_id","amount","quantity","created_at","status"]) 
+require_columns(pd_users,  ["user_id","country","signup_date"]) #add cols
 assert_non_empty(pd_orders)
 assert_non_empty(pd_users)
 assert_unique_key(pd_orders, "order_id")
@@ -45,6 +45,7 @@ pd_orders=add_missing_flags(pd_orders,["amount","quantity"])
 
 # 7. writes orders_clean.parquet
 write_parquet(pd_orders,paths.Processed/"orders_clean.parquet")
+write_parquet(pd_users, paths.Processed / "users.parquet")
 
 # Checkpoint: script runs end-to-end and writes outputs.
 clean_order_pq=read_parquet(paths.Processed/"orders_clean.parquet")
