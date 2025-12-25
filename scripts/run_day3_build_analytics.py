@@ -67,4 +67,4 @@ summary = (
     .sort_values("revenue", ascending=False)
 )
 print(summary)
-summary.to_csv(paths.reports/"revenue_by_country.csv", index=False)
+summary.to_csv(ROOT/"reports"/"revenue_by_country.csv", index=False)

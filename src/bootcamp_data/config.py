@@ -10,7 +10,6 @@ class Paths:
     cache: Path 
     Processed: Path
     external: Path
-    reports: Path
 
 
 
@@ -21,8 +20,7 @@ def make_paths(root: Path) -> Paths:
         raw=data/"raw",
         cache=data/"cache",
         Processed=data/"Processed",
-        external=data/"external",
-        reports=data/"reports"
+        external=data/"external"
     )
 
 

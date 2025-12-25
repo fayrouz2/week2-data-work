@@ -10,7 +10,7 @@ sys.path.append(str(ROOT))
 from src.bootcamp_data.quality import require_columns,assert_non_empty, assert_unique_key, assert_in_range
 from src.bootcamp_data.config import make_paths
 from src.bootcamp_data.io import read_parquet,write_parquet,read_users_csv,read_orders_csv
-from src.bootcamp_data.transforms import enforce_schema, missingness_report, add_missing_flags,normalize_text,apply_mapping,dedupe_keep_latest
+from src.bootcamp_data.transforms import enforce_schema, missingness_report, add_missing_flags,normalize_text
 
 
 
@@ -35,7 +35,7 @@ pd_orders=enforce_schema(pd_orders)
 
 # 4. creates a missingness report and saves it to reports/
 missingness=missingness_report(pd_orders)
-write_parquet(missingness,paths.reports/"missingness_report.csv")
+write_parquet(missingness,ROOT/"reports"/"missingness_report.csv")
 
 # 5. normalizes status into status_clean
 pd_orders["status_clean"]=normalize_text(pd_orders["status"])
@@ -49,7 +49,7 @@ write_parquet(pd_users, paths.Processed / "users.parquet")
 
 # Checkpoint: script runs end-to-end and writes outputs.
 clean_order_pq=read_parquet(paths.Processed/"orders_clean.parquet")
-missingness_pq=read_parquet(paths.reports/"missingness_report.csv")
+missingness_pq=read_parquet(ROOT/"reports"/"missingness_report.csv")
 print(clean_order_pq.head())
 print(missingness_pq.head())
 
