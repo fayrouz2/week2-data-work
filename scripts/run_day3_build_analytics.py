@@ -53,10 +53,10 @@ if add_outlier_flag is not None:
 # 7. writes data/processed/analytics_table.parquet
 out_path = paths.Processed / "analytics_table.parquet"
 out_path.parent.mkdir(parents=True, exist_ok=True)
-joined.to_parquet(out_path, index=False)
+write_parquet(joined,out_path)
 
 # Checkpoint: script runs and writes the file.
-check_df=pd.read_parquet(paths.Processed/'analytics_table.parquet')
+check_df=read_parquet(paths.Processed/'analytics_table.parquet')
 #print(check_df.head())
 #print(check_df.info())
 
