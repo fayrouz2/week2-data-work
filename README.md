@@ -2,7 +2,7 @@
 python -m venv .venv
 # activate venv
 .venv\Scripts\Activate
-pip install -r requirements.txt
+pip install -r requirements.txt \
 pip install -e .
 ## Run ETL
 python scripts/run_etl.py
